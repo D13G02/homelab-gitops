@@ -1,0 +1,26 @@
+---
+
+# Cluster Data
+cluster_key: lab01.dev
+environment: "dev"
+
+
+# Networking
+networks:
+  vpc_cidr: "192.168.50.0/24"
+  pod_cidr: "10.244.0.0/16"
+
+nodes:
+  master01: 
+    ip: "192.168.50.10"
+  master02:
+    ip: "192.168.50.12"
+  worker01: 
+    ip: "192.168.50.11"
+
+
+# DNS
+dns_server: "1.1.1.1"
+
+
+# Platform

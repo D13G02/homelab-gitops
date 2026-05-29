@@ -1,0 +1,8 @@
+---
+
+domain: homelab.corp
+butane_version: 1.7.0
+core_ssh_key_path: "/home/deck/.ssh/core.pem"
+
+cluster_folder: "/home/deck/Documents/clusters"
+cluster_path: "{{ cluster_folder }}/{{ cluster_key }}"

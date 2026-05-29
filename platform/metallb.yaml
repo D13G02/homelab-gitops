@@ -1,0 +1,12 @@
+name: metallb
+
+type: helm
+
+source:
+  repoURL: https://github.com/D13G02/homelab-platform.git
+  path: platform/metallb
+
+defaults:
+  namespace: metallb-system
+
+syncWave: 0
