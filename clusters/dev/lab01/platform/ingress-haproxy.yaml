@@ -1,0 +1,11 @@
+component: haproxy
+
+type: helm
+
+namespace: haproxy-controller
+
+source:
+  repoURL: https://github.com/D13G02/homelab-platform.git
+  path: platform/haproxy
+
+values:

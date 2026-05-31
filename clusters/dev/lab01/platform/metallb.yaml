@@ -1,0 +1,14 @@
+component: metallb
+
+type: helm
+
+namespace: metallb-system
+
+source:
+  repoURL: https://github.com/D13G02/homelab-platform.git
+  path: platform/metallb
+
+values:
+  ipAddressPool:
+    addresses:
+      - 192.168.1.240-192.168.1.250

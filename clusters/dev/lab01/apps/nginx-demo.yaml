@@ -1,0 +1,11 @@
+component: nginx-demo
+
+type: kustomize
+
+namespace: nginx-demo
+
+source:
+  repoURL: https://github.com/D13G02/homelab-platform.git
+  path: apps/test-app
+
+values:

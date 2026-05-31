@@ -7,8 +7,8 @@ environment: "dev"
 
 # Networking
 networks:
-  vpc_cidr: "192.168.50.0/24"
-  pod_cidr: "10.244.0.0/16"
+  podCIDR: "10.244.0.0/16"
+  serviceCIDR: "192.168.50.0/24"
 
 nodes:
   master01: 
