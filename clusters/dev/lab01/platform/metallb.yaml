@@ -1,5 +1,7 @@
 component: metallb
 
+type: helm
+
 namespace: metallb-system
 
 source:

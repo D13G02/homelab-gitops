@@ -1,5 +1,7 @@
 component: nginx-demo
 
+type: yaml
+
 namespace: nginx-demo
 
 source:

@@ -1,5 +1,7 @@
 component: haproxy
 
+type: helm
+
 namespace: haproxy-controller
 
 source:
