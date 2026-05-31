@@ -1,6 +1,6 @@
 component: nginx-demo
 
-type: yaml
+type: kustomize
 
 namespace: nginx-demo
 
