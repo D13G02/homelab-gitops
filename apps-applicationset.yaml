@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps
+  namespace: argocd
+spec:
+  generators:
+  - git:
+      files:
+      - path: clusters/*/*/apps/*.yaml
+      repoURL: https://github.com/D13G02/homelab-gitops.git
+      revision: main
+  goTemplate: true
+  template:
+    metadata:
+      name: '{{ index .path.segments 2 }}.{{ index .path.segments 1 }}-{{ .component
+        }}'
+    spec:
+      destination:
+        namespace: '{{ .namespace }}'
+        server: https://kubernetes.default.svc
+      project: apps
+      source:
+        path: '{{ .source.path }}'
+        repoURL: '{{ .source.repoURL }}'
+        targetRevision: main
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+  templatePatch: |
+    {{- if eq .type "helm" }}
+    spec:
+      source:
+        helm:
+          releaseName: '{{ .component }}'
+          valueFiles:
+            - values/{{ index .path.segments 1 }}.yaml
+          values: |
+            {{ .values | toYaml | nindent 12 }}
+    {{- end }}
+    {{- if eq .type "kustomize" }}
+    spec:
+      source:
+        kustomize:
+          namespace: '{{ .namespace }}'
+    {{- end }}
