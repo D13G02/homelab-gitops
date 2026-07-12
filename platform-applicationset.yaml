@@ -1,34 +1,34 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: apps
+  name: platform
   namespace: argocd
 spec:
-  goTemplate: true
   generators:
-    - git:
-        repoURL: https://github.com/D13G02/homelab-gitops.git
-        revision: metallb-automation
-        files:
-          - path: clusters/*/*/apps/*.yaml
+  - git:
+      files:
+      - path: clusters/*/*/platform/*.yaml
+      repoURL: https://github.com/D13G02/homelab-gitops.git
+      revision: main
+  goTemplate: true
   template:
     metadata:
       name: '{{ index .path.segments 2 }}.{{ index .path.segments 1 }}-{{ .component }}'
     spec:
-      project: apps
+      destination:
+        namespace: '{{ .namespace }}'
+        server: https://kubernetes.default.svc
+      project: platform
       source:
+        path: '{{ .source.path }}'
         repoURL: '{{ .source.repoURL }}'
         targetRevision: main
-        path: '{{ .source.path }}'
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: '{{ .namespace }}'
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
         syncOptions:
-          - CreateNamespace=true
+        - CreateNamespace=true
   templatePatch: |
     {{- if eq .type "helm" }}
     spec:
@@ -39,4 +39,10 @@ spec:
             - values/{{ index .path.segments 1 }}.yaml
           values: |
             {{ .values | toYaml | nindent 12 }}
+    {{- end }}
+    {{- if eq .type "kustomize" }}
+    spec:
+      source:
+        kustomize:
+          namespace: '{{ .namespace }}'
     {{- end }}
