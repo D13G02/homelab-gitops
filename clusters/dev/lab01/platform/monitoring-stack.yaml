@@ -1,4 +1,4 @@
-component: kube-prometheus
+component: monitoring
 type: helm
 namespace: monitoring
 
