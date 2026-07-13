@@ -1,0 +1,9 @@
+component: local-path
+type: kustomize
+namespace: local-path-storage
+
+source:
+  repoURL: https://github.com/D13G02/homelab-catalog.git
+  path: platform/local-path-provisioner
+
+values:
