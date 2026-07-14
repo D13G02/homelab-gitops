@@ -1,9 +1,9 @@
-component: csi-nfs-driver
+component: nfs
 type: helm
 namespace: kube-system
 
 source:
   repoURL: https://github.com/D13G02/homelab-catalog.git
-  path: platform/csi-nfs-driver
+  path: platform/csi-driver-nfs
 
 values:
