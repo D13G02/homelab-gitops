@@ -1,0 +1,9 @@
+component: jenkins
+type: kustomize
+namespace: devops-tools
+
+source:
+  repoURL: https://github.com/D13G02/homelab-catalog.git
+  path: apps/jenkins
+
+values:
