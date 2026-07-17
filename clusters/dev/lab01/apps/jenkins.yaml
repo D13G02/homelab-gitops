@@ -1,5 +1,5 @@
 component: jenkins
-type: kustomize
+type: helm
 namespace: devops-tools
 
 source:
