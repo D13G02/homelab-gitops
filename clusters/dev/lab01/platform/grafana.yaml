@@ -1,7 +1,6 @@
 component: grafana
 type: helm
-namespace: grafana
-
+namespace: monitoring
 source:
   repoURL: https://github.com/D13G02/homelab-catalog.git
   path: platform/grafana
