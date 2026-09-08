@@ -1,0 +1,9 @@
+component: grafana
+type: helm
+namespace: grafana
+
+source:
+  repoURL: https://github.com/D13G02/homelab-catalog.git
+  path: platform/grafana
+
+values:
