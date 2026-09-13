@@ -1,9 +1,0 @@
-component: kube-prometheus-stack
-type: helm
-namespace: monitoring
-
-source:
-  repoURL: https://github.com/D13G02/homelab-catalog.git
-  path: platform/kube-prometheus-stack
-
-values:
